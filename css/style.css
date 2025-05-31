@@ -1,0 +1,161 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0e0e0e;
+  color: #fff;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: #f0f0f0;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.logo {
+  color: #3fffd2;
+}
+
+.intro {
+  text-align: center;
+  padding: 2rem;
+}
+
+.profile-pic {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.projects {
+  padding: 2rem;
+}
+
+.project-title {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1.5rem;
+}
+
+@media (min-width: 900px) {
+  .project-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Project Card */
+.project-card {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+/* Video Container */
+.video-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Info Bar */
+/* Hide overlay content by default */
+.overlay {
+  padding: 1rem;
+  background-color: #1a1a1a;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  position: absolute;  /* Position absolute to overlay on the video */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 3;  /* Above info-bar */
+}
+
+/* Show overlay content on hover */
+.project-card:hover .overlay {
+  opacity: 1;
+  visibility: visible;
+  background-color: rgba(34, 34, 34, 0.85); /* Slightly transparent overlay */
+}
+
+/* Make sure info-bar stays visible on top */
+.info-bar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.4rem 0.6rem;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 0.8rem;
+  color: #fff;
+  z-index: 4;  /* Above overlay */
+}
+
+.overlay h3 {
+  margin-bottom: 0.4rem;
+  color: #ff7777;
+  font-size: 1.1rem;
+}
+
+.overlay .role {
+  font-weight: bold;
+  color: #aaaaaa;
+  margin-bottom: 0.5rem;
+}
+
+.overlay p {
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar nav {
+    margin-top: 0.5rem;
+  }
+}
