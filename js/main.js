@@ -3,7 +3,7 @@ const projects = [
     title: "Fast And Fractured (2025)",
     description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
-    link: "bug-shooter.html",
+    link: "FastAndFractured.html",
     team: "6",
     duration: "2 Months",
     tech: "Unity C#",
@@ -54,12 +54,14 @@ const projects = [
 
 const projectGrid = document.getElementById("projectGrid");
 
+const projectDetail = document.getElementById("projectDetail");
+
 projects.forEach(project => {
   const card = document.createElement("div");
   card.className = "project-card";
-  card.onclick = () => (window.location.href = project.link);
+  card.onclick = () => showProjectDetail(project)
 
-    let infoBarHTML = GenerateInfoBar(project)
+    let infoBarHTML = generateInfoBar(project)
 
   card.innerHTML = `
   <div class="video-container">
@@ -76,7 +78,7 @@ projects.forEach(project => {
   projectGrid.appendChild(card);
 });
 
-function GenerateInfoBar(project) {
+function generateInfoBar(project) {
     let infoBarHTML = `<div class="info-bar">`;
 
   if (project.team) {
@@ -110,4 +112,49 @@ function GenerateInfoBar(project) {
 
 function getVideoSrc(fileName) {
     return `assets/${fileName}`;
+}
+
+function showProjectDetail(project) {
+  projectGrid.classList.add("animate-out");
+
+  // Wait for the animation to finish
+  setTimeout(() => {
+    projectGrid.classList.add("hidden");
+    projectGrid.classList.remove("animate-out");
+
+    // Load detail content
+    projectDetail.innerHTML = `
+      <button id="backBtn">← Back</button>
+      <h2>${project.title}</h2>
+      <video src="${project.videoSrc}" autoplay muted loop style="width: 100%; max-width: 600px; margin: 1rem 0;"></video>
+      <p><strong>Role:</strong> ${project.role || "N/A"}</p>
+      <p><strong>Description:</strong> ${project.description}</p>
+      <p><strong>Duration:</strong> ${project.duration}</p>
+      <p><strong>Team:</strong> ${project.team}</p>
+      <p><strong>Tech:</strong> ${project.tech}</p>
+    `;
+
+    // Show detail panel with animation
+    projectDetail.classList.remove("hidden");
+    projectDetail.classList.add("animate-in");
+
+    document.getElementById("backBtn").onclick = backToGrid;
+  }, 600);
+}
+
+function backToGrid() {
+  projectDetail.classList.add("animate-out");
+
+  setTimeout(() => {
+    projectDetail.classList.add("hidden");
+    projectDetail.classList.remove("animate-out");
+    projectGrid.classList.remove("hidden");
+    projectGrid.classList.add("animate-in");
+
+    // Clean up
+    setTimeout(() => {
+      projectGrid.classList.remove("animate-in");
+      projectDetail.innerHTML = "";
+    }, 600);
+  }, 600);
 }
