@@ -10,30 +10,46 @@ const projects = [
     role: "Lead Programmer"
   },
   {
-    title: "Bömberbots (2022)",
-    description: "Bomberman clone made in Lua using the Löve2D framework.",
-    videoSrc: "bomberbots.mp4",
-    link: "bomberbots.html"
+    title: "Fast And Fractured (2025)",
+    description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
+    videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
+    link: "bug-shooter.html",
+    team: "6",
+    duration: "2 Months",
+    tech: "Unity C#",
+    role: "Lead Programmer"
   },
   {
     title: "Fast And Fractured (2025)",
     description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
-    link: "bug-shooter.html"
+    link: "bug-shooter.html",
+    team: "6",
+    duration: "2 Months",
+    tech: "Unity C#",
+    role: "Lead Programmer"
   },
   {
     title: "Fast And Fractured (2025)",
     description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
-    link: "bug-shooter.html"
+    link: "bug-shooter.html",
+    team: "6",
+    duration: "2 Months",
+    tech: "Unity C#",
+    role: "Lead Programmer"
   },
   {
     title: "Fast And Fractured (2025)",
     description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
-    link: "bug-shooter.html"
-  },
-  // Add more projects as needed
+    link: "bug-shooter.html",
+    team: "6",
+    duration: "2 Months",
+    tech: "Unity C#",
+    role: "Lead Programmer"
+  }
+  
 ];
 
 const projectGrid = document.getElementById("projectGrid");
@@ -43,14 +59,12 @@ projects.forEach(project => {
   card.className = "project-card";
   card.onclick = () => (window.location.href = project.link);
 
+    let infoBarHTML = GenerateInfoBar(project)
+
   card.innerHTML = `
   <div class="video-container">
     <video src="${project.videoSrc}" autoplay muted loop></video>
-    <div class="info-bar">
-      <span>👥 ${project.team}</span>
-      <span>🕒 ${project.duration}</span>
-      <span>💻 ${project.tech}</span>
-    </div>
+    ${infoBarHTML}
   </div>
   <div class="overlay">
     <h3>${project.title}</h3>
@@ -62,6 +76,37 @@ projects.forEach(project => {
   projectGrid.appendChild(card);
 });
 
+function GenerateInfoBar(project) {
+    let infoBarHTML = `<div class="info-bar">`;
+
+  if (project.team) {
+    infoBarHTML += `
+      <div class="info-item">
+        <img src="assets/Icons/teamIcon.png" alt="Team" class="icon" />
+        <span>${project.team}</span>
+      </div>`;
+  }
+
+  if (project.duration) {
+    infoBarHTML += `
+      <div class="info-item">
+        <img src="assets/Icons/timeIcon.png" alt="Duration" class="icon" />
+        <span>${project.duration}</span>
+      </div>`;
+  }
+
+  if (project.tech) {
+    infoBarHTML += `
+      <div class="info-item">
+        <img src="assets/Icons/softwareIcon.png" alt="Tech" class="icon" />
+        <span>${project.tech}</span>
+      </div>`;
+  }
+
+  infoBarHTML += `</div>`; // Close info-bar
+
+  return infoBarHTML;
+}
 
 function getVideoSrc(fileName) {
     return `assets/${fileName}`;
