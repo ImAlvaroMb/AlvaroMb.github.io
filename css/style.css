@@ -74,6 +74,19 @@ body {
   transform: scale(1.1);
 }
 
+.resume-button {
+  margin-top: 10px;
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.resume-button:hover {
+  
+  transform: scale(1.05);
+}
+
 @media (max-width: 600px) {
   .navbar-content {
     flex-direction: column;
