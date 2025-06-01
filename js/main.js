@@ -4,20 +4,20 @@ const projects = [
     description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
     link: "FastAndFractured.html",
-    team: "6",
+    team: "10",
     duration: "2 Months",
     tech: "Unity C#",
     role: "Lead Programmer"
   },
   {
-    title: "Fast And Fractured (2025)",
-    description: "A different take on the battle royale genre. A frenetic physics based driving game, shooter battle royale",
+    title: "Unity Tools",
+    description: "Different unity tools created to optimize and improve the work quality of the projects i have been doing",
     videoSrc: getVideoSrc("FastAndFractured/carmeUnique.mp4"),
     link: "bug-shooter.html",
-    team: "6",
-    duration: "2 Months",
+    team: "1",
+    duration: "In Progress",
     tech: "Unity C#",
-    role: "Lead Programmer"
+    role: "All"
   },
   {
     title: "Fast And Fractured (2025)",
