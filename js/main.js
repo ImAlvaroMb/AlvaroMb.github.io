@@ -55,27 +55,30 @@ const projects = [
 const projectGrid = document.getElementById("projectGrid");
 
 const projectDetail = document.getElementById("projectDetail");
-
+let animDelay = 0;
 projects.forEach(project => {
-  const card = document.createElement("div");
-  card.className = "project-card";
-  card.onclick = () => showProjectDetail(project)
+  setTimeout(() => {
+    const card = document.createElement("div");
+    card.className = "project-card";
+    card.onclick = () => showProjectDetail(project)
 
     let infoBarHTML = generateInfoBar(project)
 
-  card.innerHTML = `
-  <div class="video-container">
-    <video src="${project.videoSrc}" autoplay muted loop></video>
-    ${infoBarHTML}
-  </div>
-  <div class="overlay">
-    <h3>${project.title}</h3>
-    <p class="role">${project.role}</p>
-    <p>${project.description}</p>
-  </div>
-`;
-
-  projectGrid.appendChild(card);
+    card.innerHTML = `
+    <div class="video-container">
+      <video src="${project.videoSrc}" autoplay muted loop></video>
+      ${infoBarHTML}
+    </div>
+    <div class="overlay">
+      <h3>${project.title}</h3>
+      <p class="role">${project.role}</p>
+      <p>${project.description}</p>
+    </div>
+    `;
+    card.classList.add("animate-in");
+    projectGrid.appendChild(card);
+  }, animDelay);
+  animDelay += 150;
 });
 
 function generateInfoBar(project) {
